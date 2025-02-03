@@ -1,4 +1,3 @@
-// src/components/Hero/index.tsx
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
@@ -21,9 +20,10 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     padding: 20,
-    marginBottom: 40,
+    marginBottom: 20,
   },
   title: {
+    paddingTop: 20,
     fontSize: 32,
     fontWeight: 'bold',
   },

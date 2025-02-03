@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
     overflow: 'hidden',
+    marginHorizontal: 10,
   },
   image: {
     width: '100%',
