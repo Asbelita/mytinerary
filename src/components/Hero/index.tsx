@@ -11,10 +11,12 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
-      <Button title="Explore" onPress={() => {}} />
+      <Button title="Explore" onPress={() => {}} /> 
     </View>
   );
 };
+
+// usar presable en vez de button
 
 const styles = StyleSheet.create({
   container: {
