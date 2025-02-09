@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { Pressable, View, Text, StyleSheet } from 'react-native';
 
 interface HeroProps {
   title: string;
@@ -11,12 +11,12 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
-      <Button title="Explore" onPress={() => {}} /> 
+      <Pressable > 
+        <Text style={styles.button}> Explore</Text>
+      </Pressable>
     </View>
   );
 };
-
-// usar presable en vez de button
 
 const styles = StyleSheet.create({
   container: {
@@ -28,10 +28,16 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     fontSize: 32,
     fontWeight: 'bold',
+    color : '#d244ff',
   },
   subtitle: {
     fontSize: 18,
     marginVertical: 10,
+    color: '#8d07b8',
+  },
+  button: {
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

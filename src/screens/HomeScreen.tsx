@@ -30,8 +30,7 @@ const cities = [
   },
 ];
 
-const HomeScreen: React.FC = () => {
-
+export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Hero title="MyTinerary" subtitle="It's time to set your trip!" />
@@ -45,6 +44,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default HomeScreen;
 

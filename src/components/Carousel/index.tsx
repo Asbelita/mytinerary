@@ -13,7 +13,7 @@ interface CarouselProps {
 
 const { width } = Dimensions.get('window');
 
-const CarouselComponent: React.FC<CarouselProps> = ({ cities }) => {
+export default function CarouselComponent({ cities }: CarouselProps) {
   return (
     <Carousel
       loop
@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     marginHorizontal: 10,
+    backgroundColor: '#d244ff',
   },
   image: {
     width: '100%',
@@ -45,11 +46,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   cityName: {
+    padding: 10,
     textAlign: 'center',
     fontSize: 18,
-    marginTop: 10,
     fontWeight: 'bold',
+    color: 'white',
   },
 });
-
-export default CarouselComponent;

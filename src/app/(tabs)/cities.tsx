@@ -1,17 +1,23 @@
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { cities } from '../../resources/citiesData';
+import CityCard from '../../components/CityCard';
 
-export default function Tab() {
-  return (
-    <View style={styles.container}>
-      <Text>Tab Cities</Text>
-    </View>
-  );
+export default function CitiTab() {
+    return (
+        <SafeAreaView style={styles.container}>
+          <FlatList
+            data={cities}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => <CityCard city={item} />}
+          />
+        </SafeAreaView>
+      );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+    container: {
+      flex: 1,
+      padding: 10,
+    },
+  });
