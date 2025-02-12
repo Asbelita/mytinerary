@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import Hero from '../../components/Hero';
 import Carousel from '../../components/Carousel';
-import { cities } from '../../resources/citiesData';
+import { cities } from '../../hooks/useCities';
 
 export default function Home() {
     return (
