@@ -1,12 +1,19 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text } from 'react-native';
 import Hero from '../../components/Hero';
 import Carousel from '../../components/Carousel';
-import { cities } from '../../hooks/useCities';
+import useCities from '../../hooks/useCities';
 
 export default function Home() {
+  const { cities, loading, error } = useCities();
+  
+  if (loading) return <ActivityIndicator size="large" color="#d244ff" />;
+  if (error) return <Text>{error}</Text>;
+
     return (
         <SafeAreaView style={styles.container}>
+          <StatusBar style="auto" />
           <Hero title="MyTinerary" subtitle="It's time to set your trip!" />
           <Carousel cities={cities} />
         </SafeAreaView>
