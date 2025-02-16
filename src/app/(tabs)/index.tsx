@@ -8,7 +8,7 @@ import useCities from '../../hooks/useCities';
 export default function Home() {
   const { cities, loading, error } = useCities();
   
-  if (loading) return <ActivityIndicator size="large" color="#d244ff" />;
+  if (loading) return <ActivityIndicator size="large" color="#d244ff" style={styles.status} />;
   if (error) return <Text>{error}</Text>;
 
     return (
@@ -24,5 +24,8 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
     },
+    status: {
+      padding: 100,
+    }
   });
   

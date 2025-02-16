@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-
-// improve this, receive a city object with image and name as City Interface in useCities
 interface CityProps {
     city: {
       image: string;

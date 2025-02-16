@@ -10,24 +10,21 @@ export default function CitiTab() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredCities = cities.filter((city) => {
-    console.log(" city.name: ", city.name);
-    console.log(" searchQuery: ", searchQuery);
     return city.name.toLowerCase().includes(searchQuery.toLowerCase());
   });
 
-  if (loading) return <ActivityIndicator size="large" color="#d244ff" />;
+  if (loading) return <ActivityIndicator size="large" style={styles.status}/>;
   if (error) return <Text>{error}</Text>;
   
     return (
         <SafeAreaView style={styles.container}>
           <StatusBar style="auto" />
-
           <TextInput
-        style={styles.searchInput}
-        placeholder="Search cities..."
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
+            style={styles.searchInput}
+            placeholder="Search cities..."
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+          />
           <FlatList
             data={filteredCities}
             keyExtractor={(item) => item.id}
@@ -45,11 +42,11 @@ const styles = StyleSheet.create({
     },
     searchInput: {
       height: 40,
-      borderColor: "#ccc",
+      borderColor: "#d244ff",
       borderWidth: 1,
       borderRadius: 8,
       paddingHorizontal: 10,
-      marginBottom: 10,
+      margin: 10,
     },
     emptyText: {
       textAlign: "center",
@@ -57,4 +54,7 @@ const styles = StyleSheet.create({
       fontSize: 16,
       color: "#888",
     },
+    status: {
+      padding: 100,
+    }
   });
