@@ -6,7 +6,6 @@ interface CarouselItem {
   image: string;
   name: string;
 }
-
 interface CarouselProps {
   cities: CarouselItem[];
 }
