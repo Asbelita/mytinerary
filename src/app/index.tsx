@@ -5,11 +5,11 @@ export default function WelcomeScreen() {
   const router = useRouter();
   
   const goToLogin = () => {
-    router.push("/login");
+    router.push("auth/login");
   };
 
   const goToRegister = () => {
-    router.push("/register");
+    router.push("auth/register");
   };
 
   return (
@@ -27,7 +27,6 @@ export default function WelcomeScreen() {
   );
 }
 
-// 📌 Estilos
 const styles = StyleSheet.create({
   container: {
     flex: 1,

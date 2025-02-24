@@ -1,8 +1,11 @@
+import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+
+import { registerUser } from '../../services/authServices';
 
 const registerSchema = z.object({
   name: z.string().nonempty('El nombre es obligatorio'),
@@ -14,12 +17,13 @@ type RegisterFormData = z.infer<typeof registerSchema>;
 
 export default function RegisterScreen() {
   const router = useRouter();
+  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
     setValue,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
@@ -29,10 +33,28 @@ export default function RegisterScreen() {
     },
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log('Datos del formulario de registro:', data);
-    // Aquí la lógica de registro: petición a API, etc.
-    // router.push('/login'); // Por ejemplo, volver al login al terminar
+  const onSubmit = async (data: RegisterFormData) => {
+    setServerError(null); 
+    console.log('entro a onsubmit');
+    try {
+      const result = await registerUser({
+        first_name: data.name,
+        last_name: data.name,
+        email: data.email,
+        password: data.password,
+        country: 'Chile', 
+      });
+
+      if (result.success) {
+        console.log('Usuario registrado:', result.response);
+        router.push('auth/login'); 
+      } else {
+        console.log(result.message);
+        setServerError(result.message);
+      }
+    } catch (error) {
+      setServerError('Ocurrió un error inesperado. Intenta nuevamente.');
+    }
   };
 
   return (
@@ -66,10 +88,11 @@ export default function RegisterScreen() {
         <Text style={styles.error}>{errors.password.message}</Text>
       )}
 
-      <Button title="Registrar" onPress={handleSubmit(onSubmit)} />
+      {serverError && <Text style={styles.serverError}>{serverError}</Text>}
 
-      {/* Botón para volver a login */}
-      <Button title="¿Ya tienes cuenta? Inicia sesión" onPress={() => router.push('/login')} />
+      <Button title="Registrar" onPress={handleSubmit(onSubmit)} disabled={isSubmitting} />
+
+      <Button title="¿Ya tienes cuenta? Inicia sesión" onPress={() => router.push('auth/login')} />
     </View>
   );
 }
@@ -97,5 +120,11 @@ const styles = StyleSheet.create({
   error: {
     color: 'red',
     marginBottom: 8,
+  },
+  serverError: {
+    color: 'red',
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
   },
 });
